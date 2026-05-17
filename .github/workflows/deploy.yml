@@ -1,0 +1,58 @@
+name: Deploy with LFS to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Разрешаем GitHub Pages записывать
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Только один деплой за раз
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Клонируем репозиторий с LFS-файлами
+      - name: Checkout with LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      
+      # 2. "Вытаскиваем" настоящие файлы из LFS
+      - name: Fetch LFS objects
+        run: git lfs checkout
+      
+      # 3. Отключаем LFS и удаляем Git-метаданные
+      #    Это обманывает GitHub Pages, чтобы он видел реальные файлы
+      - name: Turn off LFS
+        run: |
+          git lfs uninstall
+          rm -Rf .git
+          rm .gitattributes
+      
+      # 4. Настраиваем Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      # 5. Загружаем артефакт (все файлы сайта)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'  # Вся папка репозитория
+      
+      # 6. Деплоим на GitHub Pages
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
