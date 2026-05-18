@@ -403,6 +403,7 @@
                 width: 90%;
                 border-width: 12px;
                 gap: 12px;
+                transition-delay: 1s;
             }
             
             .project:nth-child(odd),
