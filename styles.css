@@ -126,7 +126,7 @@
             opacity: 0;
             transition: all 0.8s ease-out;
             filter: blur(5px);
-            transition-delay: 1s;
+            
         }
 
         .project:nth-child(odd) {
@@ -377,7 +377,9 @@
         }
         
         @media (max-width: 768px) {
-        
+            #stxplrosvid {
+                transition-delay: 0.5s;
+            }
             
             .nav-links {
                 font-size: 12px;
@@ -403,7 +405,6 @@
                 width: 90%;
                 border-width: 12px;
                 gap: 12px;
-                transition-delay: 1s;
             }
             
             .project:nth-child(odd),
