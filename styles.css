@@ -377,8 +377,9 @@
         }
         
         @media (max-width: 768px) {
+
             #stxplrosvid {
-                transition-delay: 0.5s;
+                transition-delay: 1s;
             }
             
             .nav-links {
