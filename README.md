@@ -1,2 +1,2 @@
-# Website-online-portfolio
-Website online-portfolio
+# Сайт для курсовой работы
+Онлайн портфолио видеомонтажера
