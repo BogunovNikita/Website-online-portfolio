@@ -186,13 +186,20 @@
         .videos {
             display: flex;
             justify-content: center;
+            
         }
 
-        video {
+        .video {
             height: 540px;
             border-radius: 10px;
+            width: 1000px;
         }
 
+        #blenderbackroomsvid {
+            height: 540px;
+            border-radius: 10px;
+            width: 600px;
+        }
         .p-texts {
             margin-left: auto;
             margin-right: auto;
@@ -210,7 +217,7 @@
             gap: 16px;
         }
 
-        .photos img {
+        .images {
             width: 100%;
             display: block;
             object-fit: cover;
@@ -218,13 +225,13 @@
             box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, 0.2);
         }
 
-        img:hover {
+        .images:hover {
             transform: scale(1.02);
             transition: transform 0.2s ease-out;
             z-index: 0;
         }
 
-        img:not(:hover) {
+        .images:not(:hover) {
             transition: transform 0.2s ease-out;
         }
 
@@ -507,6 +514,8 @@
             video {
                 max-height: 220px;
             }
+
+            
             
             .photos {
                 grid-template-columns: 1fr;
